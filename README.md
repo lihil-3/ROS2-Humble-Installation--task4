@@ -1,30 +1,35 @@
-ROS 2 Humble Installation on Ubuntu 22.04
+🤖 ROS 2 Humble Installation on Ubuntu 22.04
 
-Task 4 – Linux and ROS Installation
+📌 Task 4 – Linux and ROS Installation
 
-Overview
+📖 Overview
 
-This task focused on installing a Linux environment and setting up ROS 2 Humble. Ubuntu 22.04 LTS was installed using Windows Subsystem for Linux 2 (WSL 2), followed by the installation and testing of ROS 2 Humble.
+This task focused on installing a Linux environment and setting up ROS 2 Humble.
+
+Ubuntu 22.04.5 LTS was installed using Windows Subsystem for Linux 2 (WSL 2), followed by the installation, configuration, and testing of ROS 2 Humble.
 
 ⸻
 
-1. Linux Environment Installation
+🐧 1. Linux Environment Installation
 
 The Linux environment was installed using Windows Subsystem for Linux (WSL 2).
 
-First, the required Windows features were enabled using PowerShell:
+First, the required Windows features were enabled using PowerShell as Administrator:
 
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
-After restarting the computer, WSL was updated and configured to use version 2:
+After restarting the computer, WSL was updated:
 
 wsl --update
+
+WSL 2 was then configured as the default version:
+
 wsl --set-default-version 2
 
 ⸻
 
-2. Installing Ubuntu 22.04
+🐧 2. Installing Ubuntu 22.04
 
 Ubuntu 22.04 LTS was selected because it is compatible with ROS 2 Humble.
 
@@ -42,19 +47,21 @@ The Ubuntu version was verified using:
 
 lsb_release -a
 
-The installed version was:
+✅ Installed Version
 
 Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 
+📸 Screenshot
+
 ⸻
 
-3. Updating Ubuntu
+🔄 3. Updating Ubuntu
 
-Before installing ROS 2, the Ubuntu packages were updated:
+Before installing ROS 2, the Ubuntu package lists were updated:
 
 sudo apt update
 
-Then the installed packages were upgraded:
+The installed packages were then upgraded:
 
 sudo apt upgrade -y
 
@@ -62,9 +69,9 @@ Both commands completed successfully.
 
 ⸻
 
-4. Setting Up the ROS 2 Repository
+📦 4. Setting Up the ROS 2 Repository
 
-The ROS 2 repository and required tools were configured.
+The ROS 2 repository was configured before installing ROS 2 Humble.
 
 The ROS key was downloaded using:
 
@@ -80,7 +87,7 @@ sudo apt update
 
 ⸻
 
-5. Installing ROS 2 Humble
+🤖 5. Installing ROS 2 Humble
 
 ROS 2 Humble Desktop was installed using:
 
@@ -88,41 +95,45 @@ sudo apt install ros-humble-desktop
 
 The installation completed successfully.
 
+📸 Screenshot
+
 ⸻
 
-6. Configuring the ROS Environment
+⚙️ 6. Configuring the ROS Environment
 
-The ROS environment was activated using:
+The ROS 2 environment was activated using:
 
 source /opt/ros/humble/setup.bash
 
-To automatically load ROS whenever Ubuntu starts, the following command was added to .bashrc:
+To automatically load ROS 2 whenever Ubuntu starts, the following command was added to .bashrc:
 
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 
-Then the configuration was reloaded:
+The configuration was then reloaded:
 
 source ~/.bashrc
 
 ⸻
 
-7. Testing ROS 2
+🧪 7. Testing ROS 2
 
-The ROS installation was tested using:
+The ROS 2 installation was tested using the ROS diagnostic tool:
 
 ros2 doctor
 
-The diagnostic test successfully passed all checks:
+✅ Result
 
 All 5 checks passed.
 
 This confirmed that the ROS 2 environment was correctly installed and configured.
 
+📸 Screenshot
+
 ⸻
 
-8. Running a ROS 2 Node
+💬 8. Running a ROS 2 Node
 
-To verify that ROS 2 could run a node successfully, the following command was executed:
+To verify that ROS 2 could successfully run a node, the following command was executed:
 
 ros2 run demo_nodes_cpp talker
 
@@ -133,91 +144,106 @@ Hello World: 2
 Hello World: 3
 Hello World: 4
 
-This confirmed that the ROS 2 Talker node was running successfully.
+The continuous messages confirmed that the ROS 2 Talker node was running successfully.
 
 The node was stopped using:
 
 Ctrl + C
 
+📸 Screenshot
+
 ⸻
 
-9. Problems Encountered and Solutions
+⚠️ 9. Problems Encountered and Solutions
 
-Problem 1 – WSL Command Not Recognized
+🔴 Problem 1 – WSL Command Not Recognized
 
-At the beginning, the command:
+At the beginning, the following command was not recognized by PowerShell:
 
 wsl --install
 
-was not recognized by PowerShell.
+💡 Solution
 
-Solution:
-The required Windows features were enabled manually using DISM commands for WSL and Virtual Machine Platform.
+The required Windows features were enabled manually using DISM commands:
+
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+
+After restarting the computer, WSL was successfully configured.
 
 ⸻
 
-Problem 2 – WSL Required an Update
+🟠 Problem 2 – WSL Required an Update
 
 When configuring WSL 2, the system indicated that WSL required an update.
 
-Solution:
+💡 Solution
+
+WSL was updated using:
 
 wsl --update
 
-After updating WSL, version 2 was successfully configured.
+After the update, WSL 2 was successfully configured using:
+
+wsl --set-default-version 2
 
 ⸻
 
-Problem 3 – lsb_release Command Typing Error
+🟡 Problem 3 – lsb_release Command Typing Error
 
-Initially, the Ubuntu version command was entered incorrectly.
+The Ubuntu version command was initially entered incorrectly.
 
-The incorrect command was:
+❌ Incorrect Command
 
 lsb_release-a
 
-The correct command was:
+✅ Correct Command
 
 lsb_release -a
 
-The correct command successfully displayed Ubuntu 22.04.5 LTS.
+The correct command successfully displayed:
+
+Ubuntu 22.04.5 LTS
 
 ⸻
 
-Problem 4 – ros2 --version Command
+🟢 Problem 4 – ros2 --version Command
 
-The command:
+The following command did not provide the expected version information:
 
 ros2 --version
 
-did not provide the expected version information.
+💡 Solution
 
-Solution:
 The ROS installation was verified using the ROS diagnostic tool instead:
 
 ros2 doctor
 
-The result showed:
+The result was:
 
 All 5 checks passed.
 
-The Talker node was also successfully executed, providing an additional confirmation that ROS 2 was working correctly.
+The Talker node was also successfully executed:
+
+ros2 run demo_nodes_cpp talker
+
+The node published continuous Hello World messages, confirming that ROS 2 was working correctly.
 
 ⸻
 
-10. Screenshots
+📸 10. Screenshots
 
 Ubuntu 22.04 Version
 
-The Ubuntu installation was verified using lsb_release -a.
+Ubuntu 22.04.5 LTS was successfully installed and verified.
 
-ROS 2 Installation
+ROS 2 Humble Installation
 
 ROS 2 Humble Desktop was successfully installed.
 
 ROS 2 Doctor
 
-All ROS diagnostic checks passed successfully.
+All five ROS diagnostic checks passed successfully.
 
 ROS 2 Talker
 
@@ -225,10 +251,25 @@ The ROS 2 Talker node successfully published Hello World messages.
 
 ⸻
 
-11. Conclusion
+✅ 11. Final Result
 
-Ubuntu 22.04 LTS was successfully installed using WSL 2, and ROS 2 Humble was successfully installed and configured.
+Component	Status
+WSL	✅ Installed
+WSL 2	✅ Configured
+Ubuntu 22.04.5 LTS	✅ Installed
+ROS 2 Humble	✅ Installed
+ROS Environment	✅ Configured
+ROS Doctor	✅ 5/5 Checks Passed
+ROS 2 Talker Node	✅ Running Successfully
 
-The installation was verified using ros2 doctor, which passed all five checks. The ROS 2 Talker node was also successfully executed and published Hello World messages.
+⸻
 
-Therefore, the Linux and ROS 2 environment was successfully installed and tested.
+🎯 Conclusion
+
+Ubuntu 22.04.5 LTS was successfully installed using WSL 2, and ROS 2 Humble was successfully installed and configured.
+
+The installation was verified using ros2 doctor, which reported All 5 checks passed.
+
+The ROS 2 Talker node was also successfully executed and published continuous Hello World messages.
+
+Therefore, the Linux and ROS 2 environment was successfully installed, configured, and tested.
