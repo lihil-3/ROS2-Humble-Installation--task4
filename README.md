@@ -325,3 +325,12 @@ The installation was verified using `ros2 doctor`, which reported **All 5 checks
 The ROS 2 Talker node was also successfully executed and published continuous Hello World messages.
 
 Therefore, the Linux and ROS 2 environment was successfully installed, configured, and tested.
+
+——-
+
+## Author
+
+Hind Almutairi
+
+Computer Science Student
+
