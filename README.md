@@ -326,7 +326,7 @@ The ROS 2 Talker node was also successfully executed and published continuous He
 
 Therefore, the Linux and ROS 2 environment was successfully installed, configured, and tested.
 
-——-
+---
 
 ## Author
 
